@@ -182,7 +182,7 @@ class AttendancesTableSeeder extends Seeder
         DB::table('attendances')->insert($param);
         //----2025年11月22日(土)----
         //----2025年11月23日(日)----
-        //----2025年11月34日(祝)----
+        //----2025年11月24日(祝)----
         //----2025年11月25日(火)----
         $param = [
             'user_id'    => 1,                                  //大谷 翔平
