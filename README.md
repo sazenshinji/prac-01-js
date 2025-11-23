@@ -7,7 +7,7 @@
 リポジトリからダウンロード
 
 ```
-git clone https://github.com/sazenshinji/shigeno-sp2-kinta.git
+git clone https://github.com/sazenshinji/shigeno-sp2a-kintai.git
 ```
 
 「.env.example」をコピーして「.env」を作成し DB の設定を変更

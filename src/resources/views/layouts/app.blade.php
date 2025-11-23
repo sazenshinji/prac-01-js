@@ -19,8 +19,8 @@
   <header class="header">
 
     <div class="logo">
-      <a href="{{ url('/') }}">
-        <img class="logo-img" src="{{ asset('images/Coachtech.jpg') }}" alt="フリマ">
+      <a href="{{ url('/attendance') }}">
+        <img class="logo-img" src="{{ asset('images/Coachtech.jpg') }}" alt="勤怠">
       </a>
     </div>
 
