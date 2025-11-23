@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Actions\Fortify;
+
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+
+class LoginResponse implements LoginResponseContract
+{
+    public function toResponse($request)
+    {
+        return redirect()->intended(
+            auth()->user()->role === 1
+                ? '/admin/attendance/list'
+                : '/attendance'
+        );
+    }
+}

@@ -3,41 +3,56 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\ServiceProvider;
+use App\Actions\Fortify\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\ServiceProvider;
+use App\Models\User;
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+    public function register()
     {
-        //
+        // ⭐ ログイン後の遷移分岐登録
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
+
         Fortify::createUsersUsing(CreateNewUser::class);
 
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
-
+        // 一般ログイン
         Fortify::loginView(function () {
             return view('auth.login');
         });
 
-        RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
+        // 一般会員登録画面
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
 
-            return Limit::perMinute(10)->by($email . $request->ip());
+        // ⭐ 管理者ログイン
+        \Route::get('/admin/login', function () {
+            return view('auth.adminlogin');
+        })->name('admin.login');
+
+        // ⭐ 認証条件をURLで分岐
+        Fortify::authenticateUsing(function ($request) {
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return null;
+            }
+
+            // 管理者ログインURL
+            if ($request->is('admin/login')) {
+                return $user->role === 1 ? $user : null;
+            }
+
+            // 一般ログインURL
+            return $user->role === 0 ? $user : null;
         });
     }
 }
