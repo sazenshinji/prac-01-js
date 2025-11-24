@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css//attendance.css') }}">
