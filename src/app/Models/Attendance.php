@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Attendance extends Model
 {
@@ -52,4 +53,31 @@ class Attendance extends Model
     {
         return self::STATUS_LABELS[$this->status] ?? '不明';
     }
+
+    
+    // 休憩合計（分）
+    public function getBreakTotalMinutesAttribute()
+    {
+        return $this->breaktimes
+            ->sum(function ($break) {
+                if (!$break->break_end) return 0;
+                return Carbon::parse($break->break_start)
+                    ->diffInMinutes(Carbon::parse($break->break_end));
+            });
+    }
+
+    // 勤務合計（分）
+    public function getWorkTotalMinutesAttribute()
+    {
+        if (!$this->clock_in || !$this->clock_out) return 0;
+        return Carbon::parse($this->clock_in)
+            ->diffInMinutes(Carbon::parse($this->clock_out));
+    }
+
+    // 実働時間（勤務−休憩）
+    public function getTotalWorkingMinutesAttribute()
+    {
+        return max(0, $this->work_total_minutes - $this->break_total_minutes);
+    }
+
 }

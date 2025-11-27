@@ -170,4 +170,46 @@ class AttendanceController extends Controller
 
         return redirect()->route('attendance')->with('success', '休憩戻りを打刻しました。');
     }
+
+    // 勤怠一覧(ユーザー)
+    public function list(Request $request)
+    {
+        $user = Auth::user();
+        $month = $request->query('month');
+        $current = $month ? Carbon::parse($month) : Carbon::now();
+
+        $start = $current->copy()->startOfMonth();
+        $end   = $current->copy()->endOfMonth();
+        $today = Carbon::today();
+
+        // 月の勤怠を work_date をキーにコレクション化
+        $attendanceMap = Attendance::with('breaktimes')
+            ->where('user_id', $user->id)
+            ->whereBetween('work_date', [$start, $end])
+            ->get()
+            ->keyBy(function ($item) {
+                return Carbon::parse($item->work_date)->format('Y-m-d');
+            });
+
+        // ⭐ 月初〜月末まで全日生成
+        $dates = [];
+        $date = $start->copy();
+        while ($date <= $end) {
+            $key = $date->format('Y-m-d');
+            $dates[] = [
+                'date' => $date->copy(),
+                'attendance' => $attendanceMap[$key] ?? null,
+            ];
+            $date->addDay();
+        }
+
+        return view('user.attendance_list', [
+            'dates' => $dates,
+            'current' => $current,
+            'prevMonth' => $current->copy()->subMonth()->format('Y-m'),
+            'nextMonth' => $current->copy()->addMonth()->format('Y-m'),
+            'today' => $today,
+        ]);
+    }
+
 }

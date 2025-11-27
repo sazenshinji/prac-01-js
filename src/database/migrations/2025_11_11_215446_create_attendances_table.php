@@ -16,6 +16,8 @@ class CreateAttendancesTable extends Migration
             $table->dateTime('clock_out')->nullable();
             $table->tinyInteger('status')->default(0);  // 0:勤務外 / 1:勤務中 / 2:休憩中 / 3:退勤済
             $table->timestamps();
+
+            $table->unique(['user_id', 'work_date']);
         });
     }
 

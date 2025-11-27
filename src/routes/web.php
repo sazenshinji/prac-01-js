@@ -22,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
     Route::post('/attendance/break-in', [AttendanceController::class, 'breakIn'])->name('attendance.breakIn');
     Route::post('/attendance/break-out', [AttendanceController::class, 'breakOut'])->name('attendance.breakOut');
+
+    // 勤怠一覧(ユーザー)
+    Route::get('/attendance/list', [AttendanceController::class, 'list'])->name('attendance.list');
 });
 
 // 管理者専用ページ

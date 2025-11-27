@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class CorrectionsTableSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class CorrectionsTableSeeder extends Seeder
             'type' => 1,               // 種別: 1=修正
             'reason' => '間違い修正',   // 申請理由
             'status' => 0,             // 0:申請中
+            'approved_at' => null,     // 未承認
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -27,6 +29,7 @@ class CorrectionsTableSeeder extends Seeder
             'type' => 0,                   // 種別: 0=新規追加
             'reason' => '後日入力',         // 申請理由
             'status' => 0,                 // 0:申請中
+            'approved_at' => null,         // 未承認
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -38,6 +41,7 @@ class CorrectionsTableSeeder extends Seeder
             'type' => 2,               // 種別: 2=削除
             'reason' => '入力ミス',     // 申請理由
             'status' => 0,             // 0:申請中
+            'approved_at' => null,     // 未承認
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -49,6 +53,7 @@ class CorrectionsTableSeeder extends Seeder
             'type' => 1,                       // 種別: 1=修正
             'reason' => '修正(代：長嶋茂雄)',   // 申請理由
             'status' => 1,                     // 1:承認済
+            'approved_at' => Carbon::create(2025, 12, 5, 9, 0, 0),  // 承認日時
             'created_at' => now(),
             'updated_at' => now(),
         ];
