@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> 勤怠管理アプリ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/common.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/common_login.css')}}">
   <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
   <meta name="stripe-key" content="{{ config('services.stripe.key') }}">

@@ -19,37 +19,43 @@ body {
 }
 
 .nav-menu ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-right: 20px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-right: 20px;
 }
 
 /* ヘッダーナビゲーションボタンデザイン（枠線削除） */
 .nav-menu a,
 .logout-btn {
-  color: #fff; /* 白文字 */
-  background-color: #000; /* 黒背景 */
-  padding: 8px 14px;
-  border: none; /* ← 枠線削除 */
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+    color: #fff; /* 白文字 */
+    background-color: #000; /* 黒背景 */
+    padding: 8px 14px;
+    border: none; /* ← 枠線削除 */
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 /* ホバー時 */
 .nav-menu a:hover,
 .logout-btn:hover {
-  background-color: #333; /* 少し明るく */
-  opacity: 1;
+    background-color: #333; /* 少し明るく */
+    opacity: 1;
 }
 
 /* ボタンだけ高さを揃える */
 .logout-btn {
-  line-height: 1.4;
+    line-height: 1.4;
 }
 
+.content {
+    background-color: #f0eff2;
+    min-height: calc(100vh - 80px); /* ヘッダー分を除外 */
+    padding: 20px 0;
+}
 
 .error-message {
     color: red;

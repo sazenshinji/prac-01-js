@@ -7,7 +7,9 @@
 @section('content')
 <div class="attendance-list-wrapper">
 
-    <h2 class="page-title">┃ 勤怠一覧</h2>
+    <h1 class="page-title">
+        勤怠一覧
+    </h1>
 
     <div class="month-nav">
         <a class="btn-month" href="{{ route('attendance.list', ['month' => $prevMonth]) }}">← 前月</a>
@@ -73,7 +75,7 @@
                     $h = floor($breakMin / 60);
                     $m = $breakMin % 60;
                     @endphp
-                    {{ sprintf('%02d:%02d', $h, $m) }}
+                    {{ $h . ':' . sprintf('%02d', $m) }}
                     @endif
                 </td>
 
@@ -85,7 +87,7 @@
                     $h = floor($totalMin / 60);
                     $m = $totalMin % 60;
                     @endphp
-                    {{ sprintf('%02d:%02d', $h, $m) }}
+                    {{ $h . ':' . sprintf('%02d', $m) }}
                     @endif
                 </td>
 
