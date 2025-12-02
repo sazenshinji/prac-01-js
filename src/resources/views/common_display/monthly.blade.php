@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/attendance_list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/monthly.css') }}">
 @endsection
 
 @section('content')
@@ -93,7 +93,11 @@
 
                 {{-- 詳細 --}}
                 <td>
-                    @if(!$isFuture)
+                    @if($isFuture)
+                    {{-- 未来日は 押せないグレー表示 --}}
+                    <button class="btn-detail btn-disabled" disabled>詳細</button>
+                    @else
+                    {{-- 今日以前は 通常表示 --}}
                     <button class="btn-detail">詳細</button>
                     @endif
                 </td>
