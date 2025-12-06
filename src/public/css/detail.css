@@ -187,9 +187,9 @@
     font-size: 22px;          /* 文字サイズは維持 */
     font-weight: bold;
 
-    padding: 10px 48px;       /* ✅ 縦を低く・横を広く */
-    height: 52px;             /* ✅ 高さを少し低めに固定 */
-    line-height: 26px;        /* ✅ 文字の上下中央揃え */
+    padding: 10px 48px;       /* 縦を低く・横を広く */
+    height: 52px;             /* 高さを少し低めに固定 */
+    line-height: 26px;        /* 文字の上下中央揃え */
 
     margin-left: 20px;
     border-radius: 6px;
@@ -207,6 +207,21 @@
 .btn-edit:active,
 .btn-delete:active {
     transform: scale(0.97);
+}
+
+/* ===============================
+   本日データのボタングレー無効化
+================================ */
+
+.btn-disabled {
+    background-color: #999 !important;  /* グレー表示 */
+    color: #eee !important;
+    cursor: not-allowed;                /* 禁止カーソル */
+    pointer-events: none;               /* クリック完全無効 */
+}
+
+.btn-disabled:hover {
+    background-color: #999 !important;  /* ホバーしても変化させない */
 }
 
 .pending-message {

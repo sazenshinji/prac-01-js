@@ -1,17 +1,18 @@
 .auth-container {
-    width: 400px;
+    width: 720px;
     margin: 50px auto;
     text-align: center;
 }
 
-.auth-container h2 {
-    margin-bottom: 20px;
+.auth-container h1 {
+    margin-bottom: 50px;
+    font-size: 42px;
 }
 
 /* 各入力ブロック */
 .form-group {
     text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 60px;
 }
 
 .form-group label {
@@ -19,13 +20,18 @@
     font-weight: bold;
     color: #000;
     margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-size: 26px;
 }
 
 .auth-container input {
     display: block;
     width: 100%;
-    padding: 8px;
+    padding: 20px 12px; /* ← 縦横を拡大 */
+    font-size: 18px; /* ← 文字を大きく */
     box-sizing: border-box;
+    border-radius: 6px;    /* 角を少し丸める */
+    border: 2px solid #000;
 }
 
 .auth-container input {
@@ -36,13 +42,14 @@
 .auth-container button {
     display: block;
     width: 100%;
-    padding: 10px 0;
-    margin-top: 55px;
+    padding: 18px 0;     /* ← 縦を大きく */
+    margin-top: 100px;
     background-color: #000;
     color: #fff;
+    font-size: 28px;    /* ← 文字も少し大きく */
     font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px; /* ← 少し丸く */
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -56,6 +63,7 @@
     margin-top: 20px;
     color: #007bff;
     text-decoration: none;
+    font-size: 22px;
 }
 
 .auth-container a:hover {
@@ -65,5 +73,6 @@
 
 .error {
     color: red;
-    font-size: 13px;
+    font-size: 18px;
+    margin-top: 6px;
 }

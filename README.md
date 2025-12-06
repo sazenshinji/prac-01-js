@@ -51,6 +51,14 @@ php artisan migrate:fresh
 ```
 
 DB のテーブルにダミーデータを投入
+管理者は以下の内容で、2 名の情報を'users'テーブルに保存します。
+name ： '長嶋 茂雄',
+email ： '1234@abcd5',
+password ： '12345678',
+
+name ： '澤 穂希',
+email ： '1234@abcd6',
+password ： 12345678',
 
 ```
 php artisan db:seed
@@ -61,12 +69,6 @@ src ディレクトリにある storage ディレクトリに権限を設定
 
 ```
 chmod -R 777 storage
-```
-
-シンボリックリンクを作成
-
-```
-php artisan storage:link
 ```
 
 =================================================================================

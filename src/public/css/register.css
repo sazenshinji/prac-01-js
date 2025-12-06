@@ -1,50 +1,59 @@
+/* 入力エリア全体（横幅を広く） */
 .auth-container {
-    width: 400px;
+    width: 720px;          /* ← 400 → 560 に拡張 */
     margin: 50px auto;
     text-align: center;
 }
 
-.auth-container h2 {
-    margin-bottom: 20px;
+/* タイトル */
+.auth-container h1 {
+    margin-bottom: 40px;
+    font-size: 42px;       /* ← 見出しも少し大きく */
 }
 
-/* 各入力ブロック */
+/* 各入力ブロック（縦間隔を広く） */
 .form-group {
     text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 42px;
 }
 
-/* ラベル文字（黒文字） */
+/* ラベル文字（大きく） */
 .form-group label {
     display: block;
     font-weight: bold;
     color: #000;
-    margin-bottom: 5px;
+    margin-bottom: 10px;  /* ← 5 → 10 に */
+    font-size: 28px;      /* ラベル文字を拡大 */
 }
 
-/* 入力ボックス */
+/* 入力ボックス（縦横ともに拡大） */
 .auth-container input {
     display: block;
     width: 100%;
-    padding: 8px;
+    padding: 14px 16px;   /* 縦・横ともに大きく */
+    font-size: 18px;      /* 入力文字も大きく */
     box-sizing: border-box;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+     border: 2px solid #000;
 }
 
-/* 登録ボタン */
+/* 登録ボタン（大きく＆押しやすく） */
 .auth-container button {
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-top: 55px;
+    padding: 16px;        /* ← 10 → 16 に */
+    margin-top: 100px;
     background-color: #000;
     color: #fff;
+    font-size: 28px;      /* ボタン文字を拡大 */
     font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 .auth-container button:hover {
     background-color: #333;
 }
@@ -52,10 +61,12 @@
 /* ログインリンク */
 .auth-container a {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 24px;
     color: #007bff;
     text-decoration: none;
+    font-size: 22px;      /* 少し大きく */
 }
+
 .auth-container a:hover {
     color: #0056b3;
     text-decoration: underline;
@@ -64,5 +75,6 @@
 /* エラーメッセージ */
 .error {
     color: red;
-    font-size: 13px;
+    font-size: 18px;      /* 少し読みやすく */
+    margin-top: 6px;
 }

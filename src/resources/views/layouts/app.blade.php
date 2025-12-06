@@ -28,7 +28,9 @@
       <ul>
         <li><a href="{{ url('/attendance') }}">勤怠</a></li>
         <li><a href="{{ url('/attendance/list') }}">勤怠一覧</a></li>
-        <li><a href="{{ url('/attendance/request') }}">申請</a></li>
+
+        {{-- ★ 申請一覧へ遷移するリンクに変更 --}}
+        <li><a href="{{ route('request.list') }}">申請</a></li>
 
         {{-- ログアウトフォーム --}}
         <li>
@@ -39,8 +41,6 @@
         </li>
       </ul>
     </nav>
-
-    </div>
 
   </header>
 

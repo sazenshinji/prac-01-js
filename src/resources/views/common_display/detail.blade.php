@@ -14,6 +14,10 @@ $layout = auth()->user()->role === 1
 
 <div class="attendance-list-wrapper">
 
+    @php
+    $isToday = $date->isToday();
+    @endphp
+
     <h1 class="page-title">勤怠詳細</h1>
 
     {{-- 修正・削除 共通フォーム --}}
@@ -161,7 +165,8 @@ $layout = auth()->user()->role === 1
                 type="submit"
                 name="action"
                 value="delete"
-                class="btn-delete">
+                class="btn-delete {{ $isToday ? 'btn-disabled' : '' }}"
+                {{ $isToday ? 'disabled' : '' }}>
                 削除
             </button>
             @endif
@@ -171,7 +176,8 @@ $layout = auth()->user()->role === 1
                 type="submit"
                 name="action"
                 value="edit"
-                class="btn-edit">
+                class="btn-edit {{ $isToday ? 'btn-disabled' : '' }}"
+                {{ $isToday ? 'disabled' : '' }}>
                 修正
             </button>
 

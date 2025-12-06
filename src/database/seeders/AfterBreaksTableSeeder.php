@@ -42,11 +42,20 @@ class AfterBreaksTableSeeder extends Seeder
         DB::table('after_breaks')->insert($param);
 
         //----2025年12月1日(月) 大谷 翔平 【削除】----
-        //　　削除の場合、correctionbreaksテーブルの登録はない。
+        $param = [
+            'after_correction_id' => 3,                              // FK
+            'break_index' => 1,                                      // 休憩番号
+            'after_break_start'   => Carbon::create(2025, 12, 2, 12, 00, 0),
+            'after_break_end'     => Carbon::create(2025, 12, 2, 13, 00, 0),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('after_breaks')->insert($param);
+
 
         //----2025年12月2日(火) 大谷 翔平 【代理修正】----
         $param = [
-            'after_correction_id' => 3,                              // FK
+            'after_correction_id' => 4,                              // FK
             'break_index' => 1,                                      // 休憩番号
             'after_break_start'   => Carbon::create(2025, 12, 2, 12, 15, 0),
             'after_break_end'     => Carbon::create(2025, 12, 2, 13, 15, 0),

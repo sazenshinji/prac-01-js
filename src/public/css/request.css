@@ -1,0 +1,50 @@
+/* 月次一覧のデザインを流用 */
+@import url("monthly.css");
+
+/* ===== 申請一覧タブ ===== */
+
+.request-tab-nav {
+    display: flex;
+    justify-content: flex-start;  /* 左基準に戻す */
+    gap: 64px;                    /* ボタン同士の間隔は維持 */
+    margin-top: 60px;
+    margin-bottom: 12px;         /* 横線との間隔 */
+    
+    /* テーブル左端から少し右にずらす */
+    margin-left: 54px;
+}
+
+.request-tab-btn {
+    padding: 0; /* 枠消去 */
+    background: none; /* 背景消去 */
+    border: none; /* 枠線消去 */
+    text-decoration: none;
+    color: #999; /* 非アクティブ時は薄く */
+    font-size: 18px; /* 文字を大きく */
+    letter-spacing: 0.3em; /* 文字間隔を広げる */
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.request-tab-btn:hover {
+    color: #000;
+}
+
+.request-tab-btn.is-active {
+    color: #000; /* アクティブは濃く */
+    font-weight: bold;
+}
+
+/* ===== タブ下の横線 ===== */
+.request-tab-border {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 12px 0 40px; /* 上：タブとの間隔　下：テーブルとの間隔　*/
+}
+
+/* ===== 申請一覧テーブル：書き出し位置を統一 ===== */
+.attendance-table th,
+.attendance-table td {
+    text-align: left;       /* ✅ 左揃えに変更 */
+    padding-left: 16px;     /* ✅ 書き出し位置を統一 */
+}

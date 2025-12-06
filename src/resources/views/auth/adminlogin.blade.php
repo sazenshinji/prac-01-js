@@ -7,7 +7,8 @@
 @section('content')
 <div class="auth-container">
 
-  <h2>管理者ログイン</h2>
+  <h1>管理者ログイン</h1>
+
   <form method="POST" action="{{ route('login') }}" novalidate>
     @csrf
 

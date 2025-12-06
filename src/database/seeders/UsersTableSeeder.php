@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'name' => '大谷 翔平',
             'email' => '1234@abcd1',
+            'email_verified_at'  => now(),
             'password' => Hash::make('12345678'), // ハッシュ化して保存
             'role' => 0,                          // 0:一般 1:管理者
             'created_at' => now(),
@@ -22,6 +23,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'name' => '八村 塁',
             'email' => '1234@abcd2',
+            'email_verified_at'  => now(),
             'password' => Hash::make('12345678'),
             'role' => 0,
             'created_at' => now(),
@@ -31,6 +33,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'name' => '石川 佳純',
             'email' => '1234@abcd3',
+            'email_verified_at'  => now(),
             'password' => Hash::make('12345678'),
             'role' => 0,
             'created_at' => now(),
@@ -40,6 +43,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'name' => '渋野 日向子',
             'email' => '1234@abcd4',
+            'email_verified_at'  => now(),
             'password' => Hash::make('12345678'),
             'role' => 0,
             'created_at' => now(),
@@ -51,7 +55,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'name' => '長嶋 茂雄',
             'email' => '1234@abcd5',
-            'email_verified_at'  => now(),      //管理者はメール認証済
+            'email_verified_at'  => now(),
             'password' => Hash::make('12345678'),
             'role' => 1,
             'created_at' => now(),
@@ -61,7 +65,7 @@ class UsersTableSeeder extends Seeder
         $param = [
             'name' => '澤 穂希',
             'email' => '1234@abcd6',
-            'email_verified_at'  => now(),      //管理者はメール認証済
+            'email_verified_at'  => now(),
             'password' => Hash::make('12345678'),
             'role' => 1,
             'created_at' => now(),

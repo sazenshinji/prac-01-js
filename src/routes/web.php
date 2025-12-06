@@ -45,6 +45,11 @@ Route::middleware(['auth', 'verified'])
             ->name('attendance.detail.delete');
     });
 
+//  申請一覧（一般ユーザー） 
+Route::middleware(['auth', 'verified'])
+    ->get('/stamp_correction_request/list', [DisplayController::class, 'requestList'])
+    ->name('request.list');
+
 // 管理者専用ページ
 Route::middleware(['auth', 'admin'])
     ->prefix('admin')

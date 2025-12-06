@@ -27,7 +27,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         // Fortify の LoginRequest を自作 LoginRequest に差し替え
         $this->app->bind(FortifyLoginRequest::class, CustomLoginRequest::class);
-
     }
 
     public function boot(): void
@@ -59,34 +58,49 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         // 認証処理 分岐
-        Fortify::authenticateUsing(function (Request $request) {
-            $user = User::where('email', $request->email)->first();
+        Fortify::authenticateUsing(function ($request) {
+            $user = \App\Models\User::where('email', $request->email)->first();
 
-            if (!$user || !Hash::check($request->password, $user->password)) {
-                return null;
+            // メール未登録 or パスワード不一致
+            if (
+                !$user ||
+                !\Illuminate\Support\Facades\Hash::check($request->password, $user->password)
+            ) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'email' => 'ログイン情報が登録されていません',
+                ]);
             }
 
             $loginRole = session('login_role');
 
+            // セッション不正（直打ち対策）
             if (!$loginRole) {
-                return null;
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'email' => 'ログイン情報が登録されていません',
+                ]);
             }
 
-            if ($loginRole === 'admin') {
-                return $user->role === 1 ? $user : null;
+            // 管理者としてログイン画面に来ているのに、一般ユーザーだった場合
+            if ($loginRole === 'admin' && $user->role !== 1) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'email' => 'ログイン情報が登録されていません',
+                ]);
             }
 
-            if ($loginRole === 'user') {
-                return $user->role === 0 ? $user : null;
+            // 一般ユーザーとしてログイン画面に来ているのに、管理者だった場合
+            if ($loginRole === 'user' && $user->role !== 0) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'email' => 'ログイン情報が登録されていません',
+                ]);
             }
 
-            return null;
+            // ここまで来たら「正しいユーザー」なのでログイン許可
+            return $user;
         });
 
         //verify-email メール認証誘導画面
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
-
     }
 }

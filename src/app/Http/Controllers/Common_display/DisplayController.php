@@ -211,4 +211,35 @@ class DisplayController extends Controller
             'isPending'
         ));
     }
+
+    /**
+     * 申請一覧（ユーザー用）
+     * /stamp_correction_request/list
+     */
+    public function requestList(Request $request)
+    {
+        $user = Auth::user();
+
+        // タブ：pending / approved（デフォルト：pending）
+        $tab = $request->query('tab', 'pending');
+        if (!in_array($tab, ['pending', 'approved'], true)) {
+            $tab = 'pending';
+        }
+
+        // 対象ユーザーの申請を取得
+        $corrections = Correction::with('aftercorrection')
+            ->where('target_user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $pending  = $corrections->where('status', 0);
+        $approved = $corrections->where('status', 1);
+
+        return view('common_display.request_list', [
+            'user'     => $user,
+            'tab'      => $tab,
+            'pending'  => $pending,
+            'approved' => $approved,
+        ]);
+    }
 }
