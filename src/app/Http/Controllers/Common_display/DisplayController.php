@@ -203,8 +203,13 @@ class DisplayController extends Controller
             ? $attendance->breaktimes()->orderBy('break_start')->get()
             : collect();
 
-        // 管理者は常に編集不可
-        $isPending = true;
+        // ✅ 承認待ちかどうかを正しく判定（ユーザーと同じ判定）
+        $isPending = Correction::where('target_user_id', $user->id)
+            ->where('status', 0) // 0 = 申請中
+            ->whereHas('aftercorrection', function ($q) use ($date) {
+                $q->whereDate('after_work_date', $date->format('Y-m-d'));
+            })
+            ->exists();
 
         return view('common_display.detail', compact(
             'user',
