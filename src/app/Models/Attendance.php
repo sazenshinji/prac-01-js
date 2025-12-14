@@ -12,13 +12,13 @@ class Attendance extends Model
 
     // 勤怠ステータス定数
     public const STATUS_OFF     = 0; // 勤務外
-    public const STATUS_WORKING = 1; // 勤務中
+    public const STATUS_WORKING = 1; // 出勤中
     public const STATUS_BREAK   = 2; // 休憩中
     public const STATUS_DONE    = 3; // 退勤済
 
     public const STATUS_LABELS = [
         self::STATUS_OFF     => '勤務外',
-        self::STATUS_WORKING => '勤務中',
+        self::STATUS_WORKING => '出勤中',
         self::STATUS_BREAK   => '休憩中',
         self::STATUS_DONE    => '退勤済',
     ];

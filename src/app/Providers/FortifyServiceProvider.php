@@ -22,15 +22,18 @@ class FortifyServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        // ログイン後の遷移制御
-        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
-
         // Fortify の LoginRequest を自作 LoginRequest に差し替え
         $this->app->bind(FortifyLoginRequest::class, CustomLoginRequest::class);
     }
 
     public function boot(): void
     {
+        // ★ ここで LoginResponse を差し替える
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            \App\Actions\Fortify\LoginResponse::class
+        );
+
         Fortify::createUsersUsing(CreateNewUser::class);
 
         // ログイン画面（URLに応じて role をセット）
