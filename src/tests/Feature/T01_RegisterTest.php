@@ -31,7 +31,7 @@ class T01_RegisterTest extends TestCase
         ]);
         // セッションのエラー取得
         $errors = session('errors')->getMessages();
-        // エラーメッセージを確認
+        // ★ エラーメッセージを確認
         $this->assertEquals('お名前を入力してください', $errors['name'][0]);
     }
 
@@ -55,7 +55,7 @@ class T01_RegisterTest extends TestCase
         ]);
         // セッションのエラー取得
         $errors = session('errors')->getMessages();
-        // エラーメッセージを確認
+        // ★ エラーメッセージを確認
         $this->assertEquals('メールアドレスを入力してください', $errors['email'][0]);
     }
 
@@ -79,7 +79,7 @@ class T01_RegisterTest extends TestCase
         ]);
         // セッションのエラー取得
         $errors = session('errors')->getMessages();
-        // エラーメッセージを確認
+        // ★ エラーメッセージを確認
         $this->assertEquals('パスワードを入力してください', $errors['password'][0]);
     }
 
@@ -103,7 +103,7 @@ class T01_RegisterTest extends TestCase
         ]);
         // セッションのエラー取得
         $errors = session('errors')->getMessages();
-        // エラーメッセージを確認
+        // ★ エラーメッセージを確認
         $this->assertEquals('パスワードは8文字以上で入力してください', $errors['password'][0]);
     }
 
@@ -127,7 +127,7 @@ class T01_RegisterTest extends TestCase
         ]);
         // セッションのエラー取得
         $errors = session('errors')->getMessages();
-        // エラーメッセージを確認
+        // ★ エラーメッセージを確認
         $this->assertEquals('パスワードと一致しません', $errors['password'][0]);
     }
 
@@ -146,7 +146,7 @@ class T01_RegisterTest extends TestCase
         // 登録後にリダイレクトが発生することを確認（任意）
         $response->assertStatus(302);
 
-        // usersテーブルに登録されたことを確認
+        // ★ usersテーブルに登録されたことを確認
         $this->assertDatabaseHas('users', [
             'name' => '山田 太郎',
             'email' => '1234@abcd',
