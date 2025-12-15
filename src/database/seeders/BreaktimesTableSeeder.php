@@ -214,6 +214,7 @@ class BreaktimesTableSeeder extends Seeder
         DB::table('breaktimes')->insert($param);
 
         //----2025年12月1日(月)----
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 31,
             'break_index'     => 1,
@@ -223,8 +224,20 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------渋野 日向子
+        $param = [
+            'attendance_id' => 34,
+            'break_index'     => 1,
+            'break_start'   => Carbon::create(2025, 12, 1, 12, 0, 0),
+            'break_end'     => Carbon::create(2025, 12, 1, 13, 1, 0),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('breaktimes')->insert($param);
+
 
         //----2025年12月2日(火)----
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 35,
             'break_index'     => 1,
@@ -234,6 +247,7 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 35,
             'break_index'     => 2,
@@ -243,6 +257,7 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 35,
             'break_index'     => 3,
@@ -252,6 +267,7 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 35,
             'break_index'     => 4,
@@ -261,11 +277,20 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------渋野 日向子
+        $param = [
+            'attendance_id' => 38,
+            'break_index'     => 1,
+            'break_start'   => Carbon::create(2025, 12, 2, 12, 0, 0),
+            'break_end'     => Carbon::create(2025, 12, 2, 13, 2, 0),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('breaktimes')->insert($param);
 
-
-
-
+        
         //----2025年12月3日(水)----
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 39,
             'break_index'     => 1,
@@ -275,6 +300,7 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 39,
             'break_index'     => 2,
@@ -284,8 +310,20 @@ class BreaktimesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('breaktimes')->insert($param);
+        //--------渋野 日向子
+        $param = [
+            'attendance_id' => 42,
+            'break_index'     => 1,
+            'break_start'   => Carbon::create(2025, 12, 3, 12, 0, 0),
+            'break_end'     => Carbon::create(2025, 12, 3, 13, 3, 0),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('breaktimes')->insert($param);
+
 
         //----2025年12月4日(木)----
+        //--------大谷 翔平
         $param = [
             'attendance_id' => 43,
             'break_index'     => 1,
@@ -297,8 +335,9 @@ class BreaktimesTableSeeder extends Seeder
         DB::table('breaktimes')->insert($param);
 
         //----2025年12月5日(金)----
+        //--------大谷 翔平
         $param = [
-            'attendance_id' => 47,
+            'attendance_id' => 46,
             'break_index'     => 1,
             'break_start'   => Carbon::create(2025, 12, 5, 12, 0, 0),
             'break_end'     => Carbon::create(2025, 12, 5, 13, 0, 0),

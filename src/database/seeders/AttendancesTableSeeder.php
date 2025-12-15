@@ -390,8 +390,8 @@ class AttendancesTableSeeder extends Seeder
         $param = [
             'user_id'    => 4,
             'work_date'  => '2025-12-1',
-            'clock_in'   => Carbon::create(2025, 12, 1, 9, 0, 0),
-            'clock_out'  => Carbon::create(2025, 12, 1, 18, 0, 0),
+            'clock_in'   => Carbon::create(2025, 12, 1, 9, 1, 0),
+            'clock_out'  => Carbon::create(2025, 12, 1, 18, 6, 0),
             'status'     => 3,
             'created_at' => now(),
             'updated_at' => now(),
@@ -432,8 +432,8 @@ class AttendancesTableSeeder extends Seeder
         $param = [
             'user_id'    => 4,
             'work_date'  => '2025-12-2',
-            'clock_in'   => Carbon::create(2025, 12, 2, 9, 0, 0),
-            'clock_out'  => Carbon::create(2025, 12, 2, 18, 0, 0),
+            'clock_in'   => Carbon::create(2025, 12, 2, 9, 2, 0),
+            'clock_out'  => Carbon::create(2025, 12, 2, 18, 7, 0),
             'status'     => 3,
             'created_at' => now(),
             'updated_at' => now(),
@@ -474,8 +474,8 @@ class AttendancesTableSeeder extends Seeder
         $param = [
             'user_id'    => 4,
             'work_date'  => '2025-12-3',
-            'clock_in'   => Carbon::create(2025, 12, 3, 9, 0, 0),
-            'clock_out'  => Carbon::create(2025, 12, 3, 18, 0, 0),
+            'clock_in'   => Carbon::create(2025, 12, 3, 9, 3, 0),
+            'clock_out'  => Carbon::create(2025, 12, 3, 18, 8, 0),
             'status'     => 3,
             'created_at' => now(),
             'updated_at' => now(),
@@ -513,16 +513,6 @@ class AttendancesTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('attendances')->insert($param);
-        $param = [
-            'user_id'    => 4,
-            'work_date'  => '2025-12-4',
-            'clock_in'   => Carbon::create(2025, 12, 4, 9, 0, 0),
-            'clock_out'  => Carbon::create(2025, 12, 4, 18, 0, 0),
-            'status'     => 3,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
-        DB::table('attendances')->insert($param);
 
         //----2025年12月5日(金)----
         $param = [
@@ -547,16 +537,6 @@ class AttendancesTableSeeder extends Seeder
         DB::table('attendances')->insert($param);
         $param = [
             'user_id'    => 3,
-            'work_date'  => '2025-12-5',
-            'clock_in'   => Carbon::create(2025, 12, 5, 9, 0, 0),
-            'clock_out'  => Carbon::create(2025, 12, 5, 18, 0, 0),
-            'status'     => 3,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
-        DB::table('attendances')->insert($param);
-        $param = [
-            'user_id'    => 4,
             'work_date'  => '2025-12-5',
             'clock_in'   => Carbon::create(2025, 12, 5, 9, 0, 0),
             'clock_out'  => Carbon::create(2025, 12, 5, 18, 0, 0),

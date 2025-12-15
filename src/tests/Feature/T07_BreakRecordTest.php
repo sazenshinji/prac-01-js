@@ -273,6 +273,5 @@ class T07_BreakRecordTest extends TestCase
         $this->assertGuest();
         // テスト時刻固定を解除
         Carbon::setTestNow();
-
     }
 }

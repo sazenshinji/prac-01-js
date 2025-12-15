@@ -106,6 +106,18 @@ $layout = auth()->user()->role === 1
                                     : optional($break->break_end)->format('H:i')
                             ) }}"
                             {{ $isPending ? 'disabled' : '' }}>
+
+                        {{-- 既存休憩「入り」エラー --}}
+                        @error("breaks.$i.start")
+                        <div class="field-error">{{ $message }}</div>
+                        @enderror
+
+                        {{-- 既存休憩「戻り」エラー --}}
+                        @error("breaks.$i.end")
+                        <div class="field-error">{{ $message }}</div>
+                        @enderror
+
+
                     </td>
                 </tr>
                 @endforeach
