@@ -87,8 +87,8 @@ class CorrectionsTableSeeder extends Seeder
             'operate_user_id' => 5,             // (代)長嶋 茂雄
             'target_user_id' => 4,              // 渋野 日向子
             'attendance_id' => 34,              // 12月1日(月)
-            'type' => 2,                        // 種別: 2=削除
-            'reason' => '削除(代：長嶋茂雄)',    // 申請理由
+            'type' => 1,                        // 種別: 1=修正
+            'reason' => '修正(代：長嶋茂雄)',    // 申請理由
             'status' => 1,                      // 1:承認済
             'approved_at' => Carbon::create(2025, 12, 6, 9, 0, 0),  // 承認日時
             'created_at' => now(),

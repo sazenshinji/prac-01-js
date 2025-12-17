@@ -68,8 +68,8 @@ class AfterCorrectionsTableSeeder extends Seeder
         $param = [
             'correction_id' => 7,
             'after_work_date'  => '2025-12-1',
-            'after_clock_in'   => Carbon::create(2025, 12, 1, 9, 0, 0),
-            'after_clock_out'  => Carbon::create(2025, 12, 1, 18, 0, 0),
+            'after_clock_in'   => Carbon::create(2025, 12, 1, 9, 1, 0),
+            'after_clock_out'  => Carbon::create(2025, 12, 1, 18, 6, 0),
             'created_at' => now(),
             'updated_at' => now(),
         ];

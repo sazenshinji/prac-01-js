@@ -86,8 +86,17 @@ class AfterBreaksTableSeeder extends Seeder
         ];
         DB::table('after_breaks')->insert($param);
 
-        //----2025年12月1日(月)渋野 日向子 【代理削除】)----
-        //----削除修正で、休憩入力しなかったためレコードはない。----
+        //----12月1日(月) 渋野 日向子 【代理修正】----
+        $param = [
+            'after_correction_id' => 7,                              // FK
+            'break_index' => 1,                                      // 休憩番号
+            'after_break_start'   => Carbon::create(2025, 11, 30, 12, 0, 0),
+            'after_break_end'     => Carbon::create(2025, 11, 30, 13, 1, 0),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('after_breaks')->insert($param);
+
 
     }
 }

@@ -10,7 +10,7 @@ class T04_GetDateTimeTest extends TestCase
     use RefreshDatabase;
     protected $seed = true;
 
-    public function test_日時取得機能_勤怠登録画面_DateTimeDisplay()
+    public function test_日時取得機能_DateTimeDisplay_勤怠登録画面()
     {
         // Fortify の login_role（一般ユーザー想定）をセット
         session(['login_role' => 'user']);

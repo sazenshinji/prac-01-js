@@ -111,7 +111,7 @@ class T09_MonthlyListTest extends TestCase
         Carbon::setTestNow();
     }
 
-    public function test_勤怠一覧情報取得機能（一般ユーザー）_詳細画面遷移確認_勤怠詳細画面()
+    public function test_勤怠一覧情報取得機能（一般ユーザー）_詳細画面遷移確認()
     {
         // テスト時刻を固定（Seedingデーターと合わせるため）
         $fixedNow = Carbon::create(2025, 12, 12, 9, 15, 0, 'Asia/Tokyo');
