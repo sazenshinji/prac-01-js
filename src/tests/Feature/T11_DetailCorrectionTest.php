@@ -234,7 +234,7 @@ class T11_DetailCorrectionTest extends TestCase
         // 申請詳細画面
         $detail = $this->get(route('request.detail', ['id' => $correctionId]));
         $detail->assertStatus(200);
-        $detail->assertSee('申請詳細');
+        $detail->assertSee('勤怠詳細');
         $detail->assertSee('渋野 日向子');
         $detail->assertSee('2025年');
         $detail->assertSee('12月');
@@ -423,6 +423,7 @@ class T11_DetailCorrectionTest extends TestCase
         $response->assertSee('2025/12/01');
         // 2025/12/02
         $response->assertSee('2025/12/02');
+
         // 対象日 2025/12/01 の申請IDを取得
         $user = User::where('email', $this->email)->first();
         $attendance = Attendance::where('user_id', $user->id)
@@ -437,7 +438,7 @@ class T11_DetailCorrectionTest extends TestCase
         // [詳細]ボタン押下（＝申請詳細画面）
         $detail = $this->get(route('request.detail', ['id' => $correction->id]));
         $detail->assertStatus(200);
-        $detail->assertSee('申請詳細');
+        $detail->assertSee('勤怠詳細');
         // 申請詳細画面の表示確認
         $detail->assertSee('渋野 日向子');
         $detail->assertSee('2025年');
@@ -473,7 +474,7 @@ class T11_DetailCorrectionTest extends TestCase
         // [詳細]ボタン押下（2025/12/02）
         $detail02 = $this->get(route('request.detail', ['id' => $correction02->id]));
         $detail02->assertStatus(200);
-        $detail02->assertSee('申請詳細');
+        $detail02->assertSee('勤怠詳細');
         // 表示内容確認
         $detail02->assertSee('渋野 日向子');
         $detail02->assertSee('2025年');
@@ -590,7 +591,7 @@ class T11_DetailCorrectionTest extends TestCase
         $detail->assertStatus(200);
 
         // 修正申請承認画面が表示されること
-        $detail->assertSee('申請詳細');
+        $detail->assertSee('勤怠詳細');
         // 表示内容確認
         $detail->assertSee('渋野 日向子');   // 名前
         $detail->assertSee('2025年');         // 年

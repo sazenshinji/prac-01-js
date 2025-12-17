@@ -15,7 +15,7 @@ $layout = auth()->user()->role === 1
 
 <div class="attendance-list-wrapper">
 
-    <h1 class="page-title">申請詳細</h1>
+    <h1 class="page-title">勤怠詳細</h1>
 
     <table class="attendance-table">
         <tbody>
