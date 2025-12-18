@@ -86,9 +86,8 @@ $layout = auth()->user()->role === 1
 
                 {{-- 詳細ボタン（処理は後で実装） --}}
                 <td>
-                    <a href="{{ route('request.detail', ['id' => $correction->id]) }}">
+                    <a href="{{ route('request.detail', ['id' => $correction->id]) }}{{ $tab === 'approved' ? '?tab=approved' : '' }}">
                         <button class="btn-detail">詳細</button>
-                    </a>
                 </td>
             </tr>
             @empty

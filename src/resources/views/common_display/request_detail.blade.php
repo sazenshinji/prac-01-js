@@ -76,6 +76,7 @@ $layout = auth()->user()->role === 1
 
     {{-- ===== 下部メッセージ・ボタン制御 ===== --}}
     <div class="detail-footer">
+
         {{-- 管理者 ＋ 承認待ち → 承認ボタン表示 --}}
         @if(auth()->user()->role === 1 && !$isApproved)
         <form method="POST"
@@ -86,7 +87,11 @@ $layout = auth()->user()->role === 1
             </button>
         </form>
 
-        {{-- 管理者 ＋ 承認済み → 承認済みグレーボタン表示 --}}
+        {{-- 管理者 ＋ 承認済み ＋ 承認済みタブから来た → 何も表示しない --}}
+        @elseif(auth()->user()->role === 1 && $isApproved && ($fromApprovedTab ?? false))
+        {{-- 表示なし --}}
+
+        {{-- 管理者 ＋ 承認済み（承認ボタン押下後など）→ 承認済みグレーボタン表示 --}}
         @elseif(auth()->user()->role === 1 && $isApproved)
         <button class="btn-edit btn-disabled" disabled>
             承認済み
@@ -106,7 +111,7 @@ $layout = auth()->user()->role === 1
             ＊ 「{{ $typeText }}」承認待ちのため修正はできません。
         </p>
 
-        {{-- 承認済みタブから来た場合（管理者・ユーザー共通）→ 何も出さない --}}
+        {{-- それ以外 → 何も出さない --}}
         @else
         {{-- 表示なし --}}
         @endif

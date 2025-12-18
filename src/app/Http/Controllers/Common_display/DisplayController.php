@@ -315,9 +315,12 @@ class DisplayController extends Controller
         ]);
     }
 
-    public function requestDetail($id)
+    public function requestDetail(Request $request, $id)
     {
         $user = Auth::user();
+
+        // 承認済みタブ経由か？
+        $fromApprovedTab = $request->query('tab') === 'approved';
 
         $query = Correction::with(['afterCorrection.afterBreaks', 'targetUser'])
             ->where('id', $id);
@@ -335,11 +338,13 @@ class DisplayController extends Controller
             : collect();
 
         return view('common_display.request_detail', [
-            'user'             => $user,
-            'correction'       => $correction,
+            'user'            => $user,
+            'correction'      => $correction,
             'afterCorrection' => $afterCorrection,
-            'afterBreaks'      => $afterBreaks,
-            'isApproved'       => $correction->status === 1,
+            'afterBreaks'     => $afterBreaks,
+            'isApproved'      => $correction->status === 1,
+
+            'fromApprovedTab' => $fromApprovedTab,
         ]);
     }
 

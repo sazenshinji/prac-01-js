@@ -23,8 +23,7 @@
         </div>
 
         <div class="attendance-row">
-            <span class="value" id="current-time">
-                {{ now()->format('H:i') }}
+            <span class="value" id="current-time"></span>
             </span>
         </div>
 
@@ -64,5 +63,8 @@
         </div>
     </div>
 </div>
+
+{{-- 現在時刻を更新 --}}
+<script src="{{ asset('js/currenttime_script.js') }}"></script>
 
 @endsection
