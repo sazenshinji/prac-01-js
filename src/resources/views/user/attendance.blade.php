@@ -23,7 +23,8 @@
         </div>
 
         <div class="attendance-row">
-            <span class="value" id="current-time"></span>
+            <span class="value" id="current-time">
+                {{ now()->format('H:i') }}
             </span>
         </div>
 

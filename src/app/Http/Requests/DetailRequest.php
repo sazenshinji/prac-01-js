@@ -120,7 +120,7 @@ class DetailRequest extends FormRequest
             }
 
             /**
-             * 休憩２（extra_break）も完全分離
+             * 休憩２（extra_break）を完全分離
              */
             $extra = $this->input('extra_break', []);
 
