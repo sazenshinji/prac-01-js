@@ -19,7 +19,7 @@
 
     <div class="logo">
       <a href="{{ url('/') }}">
-        <img class="logo-img" src="{{ asset('images/Coachtech.jpg') }}" alt="フリマ">
+        <img class="logo-img" src="{{ asset('images/Coachtech.jpg') }}" alt="勤怠アプリ">
       </a>
     </div>
 

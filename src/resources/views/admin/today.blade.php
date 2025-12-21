@@ -15,7 +15,7 @@
         <a class="btn-month" href="{{ route('admin.daily', ['date' => $prevDate]) }}">← 前日</a>
 
         <div class="month-display">
-            {{ $current->format('Y/m/d') }}
+            📅 {{ $current->format('Y/m/d') }}
         </div>
 
         <a class="btn-month" href="{{ route('admin.daily', ['date' => $nextDate]) }}">翌日 →</a>

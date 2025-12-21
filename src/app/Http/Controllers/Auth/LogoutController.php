@@ -14,7 +14,7 @@ class LogoutController
 
         session()->invalidate();  // セッション破棄
         session()->regenerateToken(); // CSRFトークン再生成
-        session()->forget('login_role'); // 🔥 これが超重要！！
+        session()->forget('login_role'); //
 
         return $role === 1
             ? redirect('/admin/login')
