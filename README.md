@@ -10,19 +10,10 @@
 git clone https://github.com/sazenshinji/shigeno-sp2a-kintai.git
 ```
 
-「.env.example」をコピーして「.env」を作成し DB の設定を変更
+「.env.example」をコピーして「.env」を作成
 
 ```
 cp .env.example .env
-```
-
-```
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
 ```
 
 docker コンテナを構築
@@ -42,6 +33,17 @@ composer install
 
 ```
 php artisan key:generate
+```
+
+DB の設定を変更
+
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
 ```
 
 DB のテーブルを作成
@@ -254,13 +256,14 @@ bash
 
 cp .env .env.testing
 
-・PHP コンテナから抜け、コピーしファイルの権限変更
+・PHP コンテナから抜け、コピーしたファイルの権限変更
 
 exit
 
-sudo chmod -R 777 \*
+sudo chmod -R 777 *
 
 (パスワードを入力)
+
 
 ・.env.testing ファイルを以下の様に編集する
 
@@ -272,7 +275,7 @@ APP_NAME=Laravel
 
 - APP_ENV=local
 
-- APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=
+- APP_KEY=
 
 * APP_ENV=test
 
