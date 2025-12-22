@@ -123,13 +123,13 @@
 }
 
 .csv-btn {
-    padding: 10px 24px;        /* ★ 少し横にゆったり */
+    padding: 10px 24px; /* ★ 少し横にゆったり */
     border-radius: 6px;
-    border: none;             /* ★ 枠線なし */
-    background-color: #000;  /* ★ 黒地 */
-    color: #fff;             /* ★ 白文字 */
+    border: none; /* ★ 枠線なし */
+    background-color: #000; /* ★ 黒地 */
+    color: #fff; /* ★ 白文字 */
     font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.25em;  /* ★ 文字間隔を広げる */
+    letter-spacing: 0.25em; /* ★ 文字間隔を広げる */
     cursor: pointer;
 }

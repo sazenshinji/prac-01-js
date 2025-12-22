@@ -33,6 +33,6 @@ class BeforeBreaksTableSeeder extends Seeder
 
         //(2025年12月1日(月)渋野 日向子 【代理削除】)
         //この日、休憩を取っていなかったためレコードはない。
-        
+
     }
 }

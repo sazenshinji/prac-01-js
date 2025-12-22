@@ -34,18 +34,18 @@
     border-collapse: separate;
     border-spacing: 0;
     background-color: #fff;
-    border-radius: 16px;      /* ★ 表全体の角丸 */
-    overflow: hidden;         /* ★ 角丸を効かせる */
+    border-radius: 16px; /* ★ 表全体の角丸 */
+    overflow: hidden; /* ★ 角丸を効かせる */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* ★ 薄く影 */
 }
 
 /* 見出し・データ共通（枠線なし・白） */
 .attendance-table th,
 .attendance-table td {
-    border: none;             /* ★ 列の仕切り線を削除 */
+    border: none; /* ★ 列の仕切り線を削除 */
     padding: 14px 12px;
     text-align: center;
-    background-color: #fff;   /* ★ 見出しも白 */
+    background-color: #fff; /* ★ 見出しも白 */
 }
 
 /* 見出しだけ少し強調 */
@@ -54,9 +54,9 @@
     font-size: 15px;
 }
 
-/* ✅ 見出し行とデータ行の間だけ太い区切り線 */
+/* 見出し行とデータ行の間だけ太い区切り線 */
 .attendance-table thead th {
-    border-bottom: 2px solid #ddd;  /* ★ データ行(1px)の約2倍 */
+    border-bottom: 2px solid #ddd; /* ★ データ行(1px)の約2倍 */
 }
 
 /* 行の区切りは下線だけ（データ行どうし） */
@@ -72,6 +72,6 @@
     font-weight: 700;
     font-size: 15px;
     color: #333;
-    cursor: pointer;   /* ★ not-allowed → pointer に */
+    cursor: pointer; /* ★ not-allowed → pointer に */
     text-decoration: none;
 }

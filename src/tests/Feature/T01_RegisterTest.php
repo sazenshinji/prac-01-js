@@ -153,7 +153,5 @@ class T01_RegisterTest extends TestCase
             // password はハッシュ化されるのでチェック不要（または cannot check）
             'role' => 0,
         ]);
-        
-
     }
 }

@@ -63,7 +63,7 @@ class AfterBreaksTableSeeder extends Seeder
         ];
         DB::table('after_breaks')->insert($param);
 
-        
+
         //----2025年11月28日(金) 八村 塁 【修正】----
         $param = [
             'after_correction_id' => 5,                              // FK
@@ -96,7 +96,5 @@ class AfterBreaksTableSeeder extends Seeder
             'updated_at' => now(),
         ];
         DB::table('after_breaks')->insert($param);
-
-
     }
 }

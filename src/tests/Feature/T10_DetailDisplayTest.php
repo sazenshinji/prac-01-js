@@ -42,7 +42,7 @@ class T10_DetailDisplayTest extends TestCase
         $detail->assertSee('2025-12-01');
         // 画面タイトル（勤怠詳細）が表示されていること
         $detail->assertSee('勤怠詳細');
-        
+
         // ★表示内容確認
         $detail->assertSee('渋野 日向子');
 
@@ -61,6 +61,5 @@ class T10_DetailDisplayTest extends TestCase
         $this->assertGuest();
         // 時刻固定解除
         Carbon::setTestNow();
-
     }
 }

@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const seconds = now.getSeconds();
         const milliseconds = now.getMilliseconds();
 
-        // ⭐ 次の分までの残り時間
+        // 次の分までの残り時間
         const delay = (60 - seconds) * 1000 - milliseconds;
 
         setTimeout(() => {
             updateCurrentTime();
 
-            // ⭐ 以降は正確に1分ごと
+            // 以降は正確に1分ごと
             setInterval(updateCurrentTime, 60000);
         }, delay);
     }

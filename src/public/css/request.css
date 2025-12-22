@@ -5,11 +5,11 @@
 
 .request-tab-nav {
     display: flex;
-    justify-content: flex-start;  /* 左基準に戻す */
-    gap: 64px;                    /* ボタン同士の間隔は維持 */
+    justify-content: flex-start; /* 左基準に戻す */
+    gap: 64px; /* ボタン同士の間隔は維持 */
     margin-top: 60px;
-    margin-bottom: 12px;         /* 横線との間隔 */
-    
+    margin-bottom: 12px; /* 横線との間隔 */
+
     /* テーブル左端から少し右にずらす */
     margin-left: 54px;
 }
@@ -45,6 +45,6 @@
 /* ===== 申請一覧テーブル：書き出し位置を統一 ===== */
 .attendance-table th,
 .attendance-table td {
-    text-align: left;       /* ✅ 左揃えに変更 */
-    padding-left: 16px;     /* ✅ 書き出し位置を統一 */
+    text-align: left; /* 左揃えに変更 */
+    padding-left: 16px; /* 書き出し位置を統一 */
 }

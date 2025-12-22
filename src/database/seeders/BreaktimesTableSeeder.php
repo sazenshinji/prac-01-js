@@ -288,7 +288,7 @@ class BreaktimesTableSeeder extends Seeder
         ];
         DB::table('breaktimes')->insert($param);
 
-        
+
         //----2025年12月3日(水)----
         //--------大谷 翔平
         $param = [

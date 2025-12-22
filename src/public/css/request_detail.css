@@ -3,12 +3,12 @@
 ================================ */
 
 .date-year {
-    margin-right: 85px;   /* 年 → 月日の間隔 */
+    margin-right: 85px; /* 年 → 月日の間隔 */
     font-size: 16px;
 }
 
 .date-month {
-    margin-right: 8px;     /* 月 → 日の間隔（微調整用） */
+    margin-right: 8px; /* 月 → 日の間隔（微調整用） */
     font-size: 16px;
 }
 
@@ -46,11 +46,11 @@
 
 /* 出勤・退勤（3行目） */
 .attendance-table tbody tr:nth-child(3) td {
-    padding-left: 160px;   /* ← 今の140px → 200px に拡張 */
+    padding-left: 160px; /* ← 今の140px → 200px に拡張 */
 }
 
 /* 休憩（4行目以降） */
-.attendance-table tbody tr:nth-child(n+4):not(:last-child) td {
+.attendance-table tbody tr:nth-child(n + 4):not(:last-child) td {
     padding-left: 160px;
 }
 

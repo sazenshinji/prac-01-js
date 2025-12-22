@@ -35,12 +35,12 @@
     padding: 6px 16px;
     border-radius: 999px;
     font-size: 20px;
-    background: #C8C8C8;
+    background: #c8c8c8;
     color: #696969;
     font-weight: 700;
     width: auto;
 
-    letter-spacing: 4px;   /* 文字間隔 */
+    letter-spacing: 4px; /* 文字間隔 */
 }
 
 /* =========================
@@ -62,7 +62,7 @@
    現在時刻
 ========================= */
 #current-time {
-    font-size: 96px;       /* ← 超目立つ */
+    font-size: 96px; /* ← 超目立つ */
     font-weight: 900;
     color: #000;
     letter-spacing: 3px;
@@ -75,8 +75,8 @@
 .attendance-buttons {
     display: flex;
     justify-content: center;
-    gap: 32px;           /* ボタン間隔を広げる */
-    margin-top: 120px;    /* 時刻との間隔を大きく */
+    gap: 32px; /* ボタン間隔を広げる */
+    margin-top: 120px; /* 時刻との間隔を大きく */
     margin-bottom: 32px;
     flex-wrap: wrap;
 }
@@ -93,7 +93,7 @@
     font-weight: 700;
     min-width: 220px;
 
-    letter-spacing: 6px;   /* ボタン文字の間隔 */
+    letter-spacing: 6px; /* ボタン文字の間隔 */
 }
 
 /* 色設定 */

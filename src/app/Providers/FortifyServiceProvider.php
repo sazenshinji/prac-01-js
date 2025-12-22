@@ -3,17 +3,10 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\LoginResponse;
-
 use App\Http\Requests\Auth\LoginRequest as CustomLoginRequest;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
-
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Fortify;
-
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
-use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Http\Request;
@@ -28,7 +21,7 @@ class FortifyServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // ★ ここで LoginResponse を差し替える
+        // ここで LoginResponse
         $this->app->singleton(
             \Laravel\Fortify\Contracts\LoginResponse::class,
             \App\Actions\Fortify\LoginResponse::class

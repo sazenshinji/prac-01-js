@@ -113,7 +113,7 @@ class T06_AttendanceRecordTest extends TestCase
         $logout = $this->post('/logout');
         $logout->assertRedirect('/login');
         $this->assertGuest();
-        
+
         // テスト時刻固定を解除
         Carbon::setTestNow();
     }
