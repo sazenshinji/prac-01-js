@@ -19,7 +19,7 @@ class T06_AttendanceRecordTest extends TestCase
         /**
          * 出勤ボタンが正しく機能する
          */
-        // ログイン（セッションに login_role をセット）
+        // ログイン（セッションに login_role をセット(一般ユーザー)）
         $response = $this->withSession(['login_role' => 'user'])
             ->post('/login', [
                 'email' => $this->email,
@@ -46,7 +46,6 @@ class T06_AttendanceRecordTest extends TestCase
         $logout->assertRedirect('/login');
         $this->assertGuest();
 
-
         /**
          * 出勤は一日一回のみできる
          */
@@ -72,7 +71,6 @@ class T06_AttendanceRecordTest extends TestCase
         $logout->assertRedirect('/login');
         $this->assertGuest();
     }
-
 
     public function test_出勤機能_打刻時刻確認_勤怠一覧画面()
     {

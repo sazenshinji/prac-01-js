@@ -60,8 +60,6 @@ class T14_AdminStaffListTest extends TestCase
         $staffList->assertSee('1234@abcd4');
         $staffList->assertSee('詳細');
 
-        // 案件シート テストケース一覧【59行目】
-
         // ================================
         // 案件シート テストケース一覧【59行目】
         // 渋野 日向子 の [詳細] ボタン押下

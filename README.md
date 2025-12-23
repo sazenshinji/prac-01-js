@@ -190,7 +190,7 @@ chmod -R 777 storage
 
 # 機能要件の詳細
 
-    以下の 詳細が未定義の機能要件は、クライアントに確認の上、以下の様に実装しています。
+    以下は 詳細が未定義のため、クライアントに確認の上 以下の様に実装しています。
 
     １． 勤怠詳細の表示と修正の対象日：
 
@@ -399,9 +399,9 @@ phpMyAdmin：http://localhost:8080/
 
 申請一覧画面（管理者）：            /stamp_correction_request/list
 
-修正申請承認画面(承認待ち)：http://localhost/stamp_correction_request/approve/{id}
+修正申請承認画面(承認待ち)：        /stamp_correction_request/approve/{id}
 
-修正申請承認画面(承認済み)：http://localhost/stamp_correction_request/approve/{id}?tab=approved
+修正申請承認画面(承認済み)：        /stamp_correction_request/approve/{id}?tab=approved
 
 
 ## ER 図

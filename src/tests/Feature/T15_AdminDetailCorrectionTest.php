@@ -125,7 +125,7 @@ class T15_AdminDetailCorrectionTest extends TestCase
         $detailResponse->assertSee('承認');
 
         // ================================
-        // 案件シート テストケース一覧【6行目】
+        // 案件シート テストケース一覧【66行目】
         // 承認処理の確認
         // ================================
         // 1. [承認]ボタン押下
@@ -136,13 +136,14 @@ class T15_AdminDetailCorrectionTest extends TestCase
         $approveResponse->assertRedirect(
             route('request.detail', ['id' => 5])
         );
-        // 2. 再表示された画面で「承認済み」表示を確認
+        // 2. 再表示された画面で、ボタンが「承認済み」に変わることを確認
         $afterApprovePage = $this->get(
             route('request.detail', ['id' => 5])
         );
         $afterApprovePage->assertStatus(200);
         $afterApprovePage->assertSee('承認済み');
-        // 3. attendances テーブルの確認
+
+        // 3. 勤怠情報の更新(attendances テーブル)の確認
         $this->assertDatabaseHas('attendances', [
             'user_id'   => 2,
             'work_date' => '2025-11-28',

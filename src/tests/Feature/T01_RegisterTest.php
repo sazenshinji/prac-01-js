@@ -59,30 +59,6 @@ class T01_RegisterTest extends TestCase
         $this->assertEquals('メールアドレスを入力してください', $errors['email'][0]);
     }
 
-    public function test_認証機能（一般ユーザー）_バリデーション_password_required()
-    {
-        //フォームデータ
-        $formData = [
-            'name' => '山田 太郎',
-            'email' => '1234@abcd',
-            // 'password' => '12345678',
-            'password_confirmation' => '12345678',
-        ];
-        // POSTリクエスト
-        $response = $this->post('/register', $formData);
-        // バリデーションエラー発生を確認
-        $response->assertSessionHasErrors([
-            // 'name',
-            // 'email',
-            'password',
-            // 'password_confirmatio',
-        ]);
-        // セッションのエラー取得
-        $errors = session('errors')->getMessages();
-        // ★ エラーメッセージを確認
-        $this->assertEquals('パスワードを入力してください', $errors['password'][0]);
-    }
-
     public function test_認証機能（一般ユーザー）_バリデーション_password_min()
     {
         //フォームデータ
@@ -90,7 +66,7 @@ class T01_RegisterTest extends TestCase
             'name' => '山田 太郎',
             'email' => '1234@abcd',
             'password' => '1234567',
-            'password_confirmation' => '1234567',
+            'password_confirmation' => '12345678',
         ];
         // POSTリクエスト
         $response = $this->post('/register', $formData);
@@ -129,6 +105,30 @@ class T01_RegisterTest extends TestCase
         $errors = session('errors')->getMessages();
         // ★ エラーメッセージを確認
         $this->assertEquals('パスワードと一致しません', $errors['password'][0]);
+    }
+
+    public function test_認証機能（一般ユーザー）_バリデーション_password_required()
+    {
+        //フォームデータ
+        $formData = [
+            'name' => '山田 太郎',
+            'email' => '1234@abcd',
+            // 'password' => '12345678',
+            'password_confirmation' => '12345678',
+        ];
+        // POSTリクエスト
+        $response = $this->post('/register', $formData);
+        // バリデーションエラー発生を確認
+        $response->assertSessionHasErrors([
+            // 'name',
+            // 'email',
+            'password',
+            // 'password_confirmatio',
+        ]);
+        // セッションのエラー取得
+        $errors = session('errors')->getMessages();
+        // ★ エラーメッセージを確認
+        $this->assertEquals('パスワードを入力してください', $errors['password'][0]);
     }
 
     public function test_認証機能（一般ユーザー）_登録確認()

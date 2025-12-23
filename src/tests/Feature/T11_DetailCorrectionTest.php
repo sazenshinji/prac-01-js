@@ -48,7 +48,7 @@ class T11_DetailCorrectionTest extends TestCase
         $detail->assertSee('勤怠詳細');
 
         // ================================
-        // ケース-1 出勤 19:00 / 退勤 18:00
+        // ケース-1-1 出勤 19:00 / 退勤 18:00
         // (出勤、退勤が逆転)
         // ================================
         $response = $this->post(route('attendance.detail.update'), [
@@ -64,7 +64,7 @@ class T11_DetailCorrectionTest extends TestCase
         $response->assertSee('出勤時間もしくは退勤時間が不適切な値です');
 
         // ================================
-        // ケース-2 出勤 09:00 / 退勤 08:00
+        // ケース-1-2 出勤 09:00 / 退勤 08:00
         // (出勤、退勤が逆転)
         // ================================
         $response = $this->post(route('attendance.detail.update'), [
@@ -80,7 +80,7 @@ class T11_DetailCorrectionTest extends TestCase
         $response->assertSee('出勤時間もしくは退勤時間が不適切な値です');
 
         // ================================
-        // ケース-3 出勤 09:00 / 退勤 18:00 / 休憩入 19:00 / 休憩戻 13:00
+        // ケース-2 出勤 09:00 / 退勤 18:00 / 休憩入 19:00 / 休憩戻 13:00
         // (休憩入が退勤後)
         // ================================
         $response = $this->post(route('attendance.detail.update'), [
@@ -102,7 +102,7 @@ class T11_DetailCorrectionTest extends TestCase
         $response->assertSee('休憩時間が不適切な値です');
 
         // ================================
-        // ケース-4 出勤 09:00 / 退勤 18:00 / 休憩入 12:00 / 休憩戻 19:00
+        // ケース-3 出勤 09:00 / 退勤 18:00 / 休憩入 12:00 / 休憩戻 19:00
         // (休憩戻が退勤後)
         // ================================
         $response = $this->post(route('attendance.detail.update'), [
@@ -124,7 +124,7 @@ class T11_DetailCorrectionTest extends TestCase
         $response->assertSee('休憩時間もしくは退勤時間が不適切な値です');
 
         // ================================
-        // ケース-5 出勤 09:00 / 退勤 18:00 / 休憩入 12:00 / 休憩戻 13:00 / 備考 空白
+        // ケース-4 出勤 09:00 / 退勤 18:00 / 休憩入 12:00 / 休憩戻 13:00 / 備考 空白
         // (備考が空白)
         // ================================
         $response = $this->post(route('attendance.detail.update'), [

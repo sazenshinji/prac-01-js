@@ -28,6 +28,7 @@ class T03_LoginAdminTest extends TestCase
         // ★ メッセージ内容チェック
         $this->assertEquals('メールアドレスを入力してください', $errors['email'][0]);
     }
+
     public function test_ログイン認証機能（管理者）_バリデーション_password_required()
     {
         // 管理者ログイン画面では session に login_role=admin がセットされるが

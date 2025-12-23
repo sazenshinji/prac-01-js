@@ -29,6 +29,7 @@ class T02_LoginUserTest extends TestCase
         // ★ エラーメッセージを確認
         $this->assertEquals('メールアドレスを入力してください', $errors['email'][0]);
     }
+
     public function test_ログイン認証機能（一般ユーザー）_バリデーション_password_required()
     {
         //フォームデータ
@@ -48,6 +49,7 @@ class T02_LoginUserTest extends TestCase
         // ★ エラーメッセージを確認
         $this->assertEquals('パスワードを入力してください', $errors['password'][0]);
     }
+
     public function test_ログイン認証機能（一般ユーザー）_バリデーション_wronginformation_email()
     {
         //フォームデータ
@@ -67,6 +69,7 @@ class T02_LoginUserTest extends TestCase
         // ★ エラーメッセージを確認
         $this->assertEquals('ログイン情報が登録されていません', $errors['email'][0]);
     }
+
     public function test_ログイン認証機能（一般ユーザー）_バリデーション_wronginformation_password()
     {
         //フォームデータ
@@ -86,6 +89,7 @@ class T02_LoginUserTest extends TestCase
         // ★ エラーメッセージを確認
         $this->assertEquals('ログイン情報が登録されていません', $errors['email'][0]);
     }
+
     public function test_ログイン認証機能（一般ユーザー）_正常動作_LoginLogout()
     {
         // Fortify の login_role（一般ユーザー想定）をセット

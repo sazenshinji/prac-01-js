@@ -18,7 +18,7 @@ class T05_StatusCheckTest extends TestCase
         /**
          * 勤務外
          */
-        // ログイン（セッションに login_role をセット）
+        // ログイン（セッションに login_role をセット(一般ユーザー)）
         $response = $this->withSession(['login_role' => 'user'])
             ->post('/login', [
                 'email' => $this->email,
@@ -74,7 +74,7 @@ class T05_StatusCheckTest extends TestCase
         $page->assertStatus(200);
         // ★ ステータスが休憩中を確認
         $page->assertSee("休憩中");
-        // 休憩戻 → 退勤
+        // [休憩戻]ボタン → [退勤]ボタン押下
         $this->post('/attendance/break-out')->assertRedirect('/attendance');
         $this->post('/attendance/clock-out')->assertRedirect('/attendance');
         // ログアウト
