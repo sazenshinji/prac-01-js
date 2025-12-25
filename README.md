@@ -37,6 +37,8 @@ php artisan key:generate
 
 DB の設定を変更
 
+.envファイルを以下の様に修正します。
+
 ```
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -50,7 +52,6 @@ DB のテーブルを作成
 
 ```
 php artisan migrate:fresh
-```
 
 php artisan db:seed
 
