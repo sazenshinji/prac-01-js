@@ -38,6 +38,7 @@ body {
     cursor: pointer;
     font-size: 22px; /* 文字を大きく */
     letter-spacing: 0.05em; /* 文字間隔を少し詰める */
+    text-decoration: none;
 }
 
 /* ホバー時 */

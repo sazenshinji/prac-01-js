@@ -367,50 +367,44 @@ class DisplayController extends Controller
             $after = $correction->afterCorrection;
             $afterBreaks = $after->afterBreaks;
 
-            // ==================================================
-            // ① 現在の勤怠を before_corrections に退避
-            // ==================================================
-
+            // 現在の勤怠
             $attendance = Attendance::where('user_id', $correction->target_user_id)
                 ->where('work_date', $after->after_work_date)
                 ->first();
 
-            $beforeCorrection = BeforeCorrection::create([
-                'correction_id'     => $correction->id,
+            // ============================================
+            // ① before_corrections 退避
+            // ============================================
+            $beforeCorrection = $correction->beforeCorrection()->create([
                 'before_work_date' => $attendance?->work_date,
                 'before_clock_in'  => $attendance?->clock_in,
                 'before_clock_out' => $attendance?->clock_out,
             ]);
 
             if ($attendance) {
-                foreach ($attendance->breaktimes as $b) {
-                    BeforeBreak::create([
-                        'before_correction_id' => $beforeCorrection->id,
-                        'break_index'          => $b->break_index,
-                        'before_break_start'  => $b->break_start,
-                        'before_break_end'    => $b->break_end,
+                $attendance->breaktimes->each(function ($b) use ($beforeCorrection) {
+                    $beforeCorrection->beforeBreaks()->create([
+                        'break_index'         => $b->break_index,
+                        'before_break_start' => $b->break_start,
+                        'before_break_end'   => $b->break_end,
                     ]);
-                }
+                });
             }
 
-            // ==================================================
+            // ============================================
             // ② corrections.type に応じて反映
-            // ==================================================
-
-            // 0:新規追加
+            // ============================================
             if ($correction->type === 0) {
-
+                // 新規
                 $attendance = Attendance::create([
                     'user_id'   => $correction->target_user_id,
                     'work_date' => $after->after_work_date,
-                    'clock_in' => $after->after_clock_in,
+                    'clock_in'  => $after->after_clock_in,
                     'clock_out' => $after->after_clock_out,
-                    'status'   => 3,
+                    'status'    => 3,
                 ]);
-
-                // 1:修正
             } elseif ($correction->type === 1) {
-
+                // 修正
                 $attendance->update([
                     'clock_in'  => $after->after_clock_in,
                     'clock_out' => $after->after_clock_out,
@@ -418,35 +412,31 @@ class DisplayController extends Controller
                 ]);
 
                 $attendance->breaktimes()->delete();
-
-                // 2:削除
             } elseif ($correction->type === 2) {
-
+                // 削除
                 $attendance?->delete();
+
                 $correction->update([
-                    'status' => 1,
+                    'status'      => 1,
                     'approved_at' => now(),
                 ]);
-
                 return;
             }
 
-            // ==================================================
-            // ③ breaktimes 再作成（新規・修正共通）
-            // ==================================================
-
-            foreach ($afterBreaks as $b) {
+            // ============================================
+            // ③ breaktimes 再作成
+            // ============================================
+            $afterBreaks->each(function ($b) use ($attendance) {
                 $attendance->breaktimes()->create([
                     'break_index' => $b->break_index,
                     'break_start' => $b->after_break_start,
                     'break_end'   => $b->after_break_end,
                 ]);
-            }
+            });
 
-            // ==================================================
+            // ============================================
             // ④ 承認確定
-            // ==================================================
-
+            // ============================================
             $correction->update([
                 'status'      => 1,
                 'approved_at' => now(),
@@ -465,21 +455,17 @@ class DisplayController extends Controller
 
         DB::transaction(function () use ($admin, $targetUser, $date, $request, $action) {
 
+            $workDate = $date->format('Y-m-d');
+
             $attendance = Attendance::with('breaktimes')
                 ->where('user_id', $targetUser->id)
-                ->where('work_date', $date->format('Y-m-d'))
+                ->where('work_date', $workDate)
                 ->first();
 
             // ===== ① 種別判定 =====
-            if (!$attendance) {
-                $type = 0; // 新規
-            } elseif ($action === 'delete') {
-                $type = 2; // 削除
-            } else {
-                $type = 1; // 修正
-            }
+            $type = !$attendance ? 0 : ($action === 'delete' ? 2 : 1);
 
-            // ===== ② corrections 作成（即承認前提）=====
+            // ===== ② corrections 作成 =====
             $correction = Correction::create([
                 'operate_user_id' => $admin->id,
                 'target_user_id'  => $targetUser->id,
@@ -490,90 +476,77 @@ class DisplayController extends Controller
                 'approved_at'     => null,
             ]);
 
-            $workDate = $date->format('Y-m-d');
-
-            // ===== ③ after_corrections =====
-            $afterCorrection = AfterCorrection::create([
-                'correction_id'   => $correction->id,
+            // ===== ③ afterCorrection =====
+            $after = $correction->afterCorrection()->create([
                 'after_work_date' => $workDate,
-                'after_clock_in' => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $request->clock_in),
+                'after_clock_in'  => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $request->clock_in),
                 'after_clock_out' => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $request->clock_out),
             ]);
 
-            // ===== ④ after_breaks =====
-            $allBreaks = [];
+            // ===== ④ afterBreaks =====
+            collect(array_merge(
+                $request->input('breaks', []),
+                [$request->input('extra_break', [])]
+            ))->filter(fn($b) => !empty($b['start']) && !empty($b['end']))
+                ->values()
+                ->each(function ($b, $i) use ($after, $workDate) {
 
-            foreach ($request->input('breaks', []) as $row) {
-                if (!empty($row['start']) && !empty($row['end'])) {
-                    $allBreaks[] = $row;
-                }
-            }
+                    $after->afterBreaks()->create([
+                        'break_index'        => $i + 1,
+                        'after_break_start' => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $b['start']),
+                        'after_break_end'   => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $b['end']),
+                    ]);
+                });
 
-            $extra = $request->input('extra_break', []);
-            if (!empty($extra['start']) && !empty($extra['end'])) {
-                $allBreaks[] = $extra;
-            }
-
-            foreach ($allBreaks as $index => $row) {
-                AfterBreak::create([
-                    'after_correction_id' => $afterCorrection->id,
-                    'break_index'        => $index + 1,
-                    'after_break_start' => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $row['start']),
-                    'after_break_end'   => Carbon::createFromFormat('Y-m-d H:i', $workDate . ' ' . $row['end']),
-                ]);
-            }
-
-            // ===== ⑤ before_corrections（退避）=====
-            $beforeCorrection = BeforeCorrection::create([
-                'correction_id'     => $correction->id,
+            // ===== ⑤ beforeCorrection =====
+            $before = $correction->beforeCorrection()->create([
                 'before_work_date' => $attendance?->work_date,
                 'before_clock_in'  => $attendance?->clock_in,
                 'before_clock_out' => $attendance?->clock_out,
             ]);
 
             if ($attendance) {
-                foreach ($attendance->breaktimes as $b) {
-                    BeforeBreak::create([
-                        'before_correction_id' => $beforeCorrection->id,
-                        'break_index'          => $b->break_index,
-                        'before_break_start'  => $b->break_start,
-                        'before_break_end'    => $b->break_end,
+                $attendance->breaktimes->each(function ($b) use ($before) {
+                    $before->beforeBreaks()->create([
+                        'break_index'         => $b->break_index,
+                        'before_break_start' => $b->break_start,
+                        'before_break_end'   => $b->break_end,
                     ]);
-                }
+                });
             }
 
             // ===== ⑥ 勤怠へ即反映 =====
             if ($type === 0) {
-                // 新規
+
                 $attendance = Attendance::create([
                     'user_id'   => $targetUser->id,
                     'work_date' => $workDate,
-                    'clock_in'  => $afterCorrection->after_clock_in,
-                    'clock_out' => $afterCorrection->after_clock_out,
+                    'clock_in'  => $after->after_clock_in,
+                    'clock_out' => $after->after_clock_out,
                     'status'    => 3,
                 ]);
             } elseif ($type === 1) {
-                // 修正
+
                 $attendance->update([
-                    'clock_in'  => $afterCorrection->after_clock_in,
-                    'clock_out' => $afterCorrection->after_clock_out,
+                    'clock_in'  => $after->after_clock_in,
+                    'clock_out' => $after->after_clock_out,
                     'status'    => 3,
                 ]);
+
                 $attendance->breaktimes()->delete();
-            } elseif ($type === 2) {
-                // 削除
+            } else {
+
                 $attendance?->delete();
             }
 
-            // breaktimes 再作成（削除以外）
             if ($type !== 2) {
-                foreach ($afterCorrection->afterBreaks as $b) {
+                $after->afterBreaks->each(function ($b) use ($attendance) {
                     $attendance->breaktimes()->create([
                         'break_index' => $b->break_index,
                         'break_start' => $b->after_break_start,
                         'break_end'   => $b->after_break_end,
                     ]);
-                }
+                });
             }
 
             // ===== ⑦ 即承認 =====

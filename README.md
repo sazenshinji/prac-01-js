@@ -37,7 +37,7 @@ php artisan key:generate
 
 DB の設定を変更
 
-.envファイルを以下の様に修正します。
+.env ファイルを以下の様に修正します。
 
 ```
 DB_CONNECTION=mysql
@@ -71,7 +71,7 @@ chmod -R 777 storage
 
 ## テーブルダミーデータについて
 
-## 管理者は以下の2名
+## 管理者は以下の 2 名
 
     name ： '長嶋 茂雄',
 
@@ -85,7 +85,7 @@ chmod -R 777 storage
 
     password ： 12345678',
 
-## 一般ユーザーは以下の4名
+## 一般ユーザーは以下の 4 名
 
     name ： '大谷 翔平',
 
@@ -261,10 +261,9 @@ cp .env .env.testing
 
 exit
 
-sudo chmod -R 777 *
+sudo chmod -R 777 \*
 
 (パスワードを入力)
-
 
 ・.env.testing ファイルを以下の様に編集する
 
@@ -366,46 +365,42 @@ nginx version: nginx/1.21.1
 
 jquery：v3
 
-
 ## URL
 
 開発環境：http://localhost/
 
 phpMyAdmin：http://localhost:8080/
 
+会員登録画面（一般ユーザー）： /register
 
-会員登録画面（一般ユーザー）：      /register
+メール認証誘導画面： /email/verify
 
-メール認証誘導画面：                /email/verify
+ログイン画面（一般ユーザー）： /login
 
-ログイン画面（一般ユーザー）：      /login
+勤怠登録画面（一般ユーザー）： /attendance
 
-勤怠登録画面（一般ユーザー）：      /attendance
+勤怠一覧画面（一般ユーザー）： /attendance/list
 
-勤怠一覧画面（一般ユーザー）：      /attendance/list
+勤怠詳細画面（一般ユーザー）： /attendance/detail/{date}
 
-勤怠詳細画面（一般ユーザー）：      /attendance/detail/{date}
+申請一覧画面（ユーザー）： /stamp_correction_request/list
 
-申請一覧画面（ユーザー）：          /stamp_correction_request/list
+ログイン画面（管理者）： /admin/login
 
-ログイン画面（管理者）：            /admin/login
+勤怠一覧画面（管理者）： /admin/attendance/list
 
-勤怠一覧画面（管理者）：            /admin/attendance/list
+勤怠詳細画面（管理者）： /admin/attendance/{user}/{date}
 
-勤怠詳細画面（管理者）：            /admin/attendance/{user}/{date}
+スタッフ一覧画面（管理者）： /admin/staff/list
 
-スタッフ一覧画面（管理者）：        /admin/staff/list
+スタッフ別勤怠一覧画面（管理者）： /admin/attendance/staff/{id}
 
-スタッフ別勤怠一覧画面（管理者）：  /admin/attendance/staff/{id}
+申請一覧画面（管理者）： /stamp_correction_request/list
 
-申請一覧画面（管理者）：            /stamp_correction_request/list
+修正申請承認画面(承認待ち)： /stamp_correction_request/approve/{id}
 
-修正申請承認画面(承認待ち)：        /stamp_correction_request/approve/{id}
-
-修正申請承認画面(承認済み)：        /stamp_correction_request/approve/{id}?tab=approved
-
+修正申請承認画面(承認済み)： /stamp_correction_request/approve/{id}?tab=approved
 
 ## ER 図
 
 ![ER図](ER.drawio.png)
-```

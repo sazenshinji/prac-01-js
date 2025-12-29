@@ -15,6 +15,9 @@ class CreateBeforeCorrectionsTable extends Migration
             $table->dateTime('before_clock_in')->nullable();
             $table->dateTime('before_clock_out')->nullable();
             $table->timestamps();
+
+            // ★ 1対1制約
+            $table->unique('correction_id');
         });
     }
 

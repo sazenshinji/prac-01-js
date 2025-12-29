@@ -101,10 +101,10 @@ $layout = auth()->user()->role === 1
                     @if(!$isFuture && $hasClockOut && !$hasBreakUnfinished)
                     @php
                     $breakMin = $attendance->break_total_minutes;
-                    $h = floor($breakMin / 60);
-                    $m = $breakMin % 60;
+                    $hours = floor($breakMin / 60);
+                    $minutes = $breakMin % 60;
                     @endphp
-                    {{ $h . ':' . sprintf('%02d', $m) }}
+                    {{ $hours . ':' . sprintf('%02d', $minutes) }}
                     @endif
                 </td>
 
@@ -113,10 +113,10 @@ $layout = auth()->user()->role === 1
                     @if(!$isFuture && $hasClockOut && !$hasBreakUnfinished)
                     @php
                     $totalMin = $attendance->total_working_minutes;
-                    $h = floor($totalMin / 60);
-                    $m = $totalMin % 60;
+                    $hours = floor($totalMin / 60);
+                    $minutes = $totalMin % 60;
                     @endphp
-                    {{ $h . ':' . sprintf('%02d', $m) }}
+                    {{ $hours . ':' . sprintf('%02d', $minutes) }}
                     @endif
                 </td>
 
@@ -124,23 +124,25 @@ $layout = auth()->user()->role === 1
                 <td>
                     @if($isFuture)
                     {{-- 未来日は 押せない --}}
-                    <button class="btn-detail btn-disabled" disabled>詳細</button>
+                    <span class="btn-detail btn-disabled">詳細</span>
                     @else
 
                     @if(auth()->user()->role === 1 && isset($targetUser))
                     {{-- 管理者がスタッフの勤怠を見ているとき --}}
-                    <a href="{{ route('admin.attendance.detail', [
-                        'user' => $targetUser->id,
-                        'date' => $date->format('Y-m-d')
-                        ]) }}">
-                        <button class="btn-detail">詳細</button>
+                    <a class="btn-detail"
+                        href="{{ route('admin.attendance.detail', [
+                           'user' => $targetUser->id,
+                           'date' => $date->format('Y-m-d')
+                       ]) }}">
+                        詳細
                     </a>
                     @else
                     {{-- 一般ユーザーが自分の勤怠を見ているとき --}}
-                    <a href="{{ route('attendance.detail', [
-                        'date' => $date->format('Y-m-d')
-                        ]) }}">
-                        <button class="btn-detail">詳細</button>
+                    <a class="btn-detail"
+                        href="{{ route('attendance.detail', [
+                           'date' => $date->format('Y-m-d')
+                       ]) }}">
+                        詳細
                     </a>
                     @endif
 
