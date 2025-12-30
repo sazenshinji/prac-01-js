@@ -7,7 +7,7 @@
 リポジトリからダウンロード
 
 ```
-git clone https://github.com/sazenshinji/shigeno-sp2a-kintai.git
+git clone https://github.com/sazenshinji/shigeno-sp2b-kintai.git
 ```
 
 「.env.example」をコピーして「.env」を作成
@@ -52,9 +52,7 @@ DB のテーブルを作成
 
 ```
 php artisan migrate:fresh
-
 php artisan db:seed
-
 ```
 
 "The stream or file could not be opened"エラーが発生した場合
@@ -62,9 +60,7 @@ php artisan db:seed
 src ディレクトリにある storage ディレクトリに権限を設定
 
 ```
-
 chmod -R 777 storage
-
 ```
 
 =================================================================================
@@ -217,7 +213,7 @@ chmod -R 777 storage
 
 bash
 
-cd coachtech/shigeno-sp2a-kintai/
+cd coachtech/shigeno-sp2b-kintai/
 
 docker-compose exec mysql bash
 
