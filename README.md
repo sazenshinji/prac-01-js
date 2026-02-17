@@ -1,13 +1,13 @@
 ## アプリケーション名
 
-勤怠アプリ
+JS_practice
 
 ## 環境構築
 
 リポジトリからダウンロード
 
 ```
-git clone https://github.com/sazenshinji/shigeno-sp2b-kintai.git
+git clone https://github.com/sazenshinji/prac-01-js.git
 ```
 
 「.env.example」をコピーして「.env」を作成
