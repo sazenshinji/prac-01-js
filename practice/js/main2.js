@@ -29,7 +29,7 @@ console.log(typeof str5);
 const num = Number(str5); //Number()で値を数値に変換することができる
 console.log(typeof num);
 
-console.log(Boolean(1));
+console.log(Boolean(1)); //Boolean()で値をBoolean型に変換することができる
 console.log(Boolean(0));
 console.log(Boolean("hello"));
 console.log(Boolean(""));
