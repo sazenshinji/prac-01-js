@@ -1,8 +1,9 @@
 console.log("***５．配列***");
 
-const array = ["HTML", "CSS", "JavaScript", "PHP"];
+const array = [8, 10, 5, 3, 2];
 
-// includesは含まれているならtrueを返す
-if (array.includes("JavaScript")) {
-  console.log("配列にJavaScriptが含まれています");
-}
+const result = array.filter(function (item) {
+  return item % 2 === 1;
+});
+
+console.log(result);
